@@ -31,4 +31,4 @@ steps:
     appType: 'webAppLinux'
     ResourceGroupName: RG01
     appName: 'mywebapp'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    

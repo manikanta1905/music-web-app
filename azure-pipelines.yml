@@ -8,12 +8,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-steps:
+  steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -24,3 +19,15 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Free Trial(6686f201-cd1a-4532-80ec-bfbe0493c389)'
+    appType: 'webAppLinux'
+    appName: 'mywebapp'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'JAVA|8-jre8'

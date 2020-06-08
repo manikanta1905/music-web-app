@@ -29,5 +29,6 @@ steps:
   inputs:
     azureSubscription: 'Free Trial(6686f201-cd1a-4532-80ec-bfbe0493c389)'
     appType: 'webAppLinux'
+    ResourceGroupName: RG01
     appName: 'mywebapp'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
